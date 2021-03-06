@@ -50,7 +50,6 @@ export class AuthService {
         const authData: AuthData = { email: email, password: password }
         this.http.post<{ token: string, expiresIn: number, userId: string }>(`${BACKEND_URL}/login`, authData, {responseType: 'json'})
             .subscribe(response => {
-                console.log('response', response)
 
                 const token = response.token
                 this.token = token
