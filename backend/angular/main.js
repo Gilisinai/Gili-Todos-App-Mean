@@ -819,7 +819,7 @@ class TodoService {
         return this.todosUpdated.asObservable();
     }
     getTodo(id) {
-        return this.http.get(`${BACKEND_URL}${id}`);
+        return this.http.get(`${BACKEND_URL}/${id}`);
     }
     addTodo(title, content, isCompleted) {
         const todo = { id: null, title: title, isCompleted: isCompleted, content: content, creator: null };
@@ -830,20 +830,20 @@ class TodoService {
     }
     updateTodo(id, title, content, isCompleted) {
         const todo = { id: id, title: title, content: content, isCompleted: isCompleted, creator: null };
-        this.http.put(`${BACKEND_URL}${id}`, todo)
+        this.http.put(`${BACKEND_URL}/${id}`, todo)
             .subscribe(response => {
             this.router.navigate(["/"]);
         });
     }
     toggleCheck(todo) {
         console.log("entered toggle check");
-        this.http.put(`${BACKEND_URL}toggle/${todo.id}`, todo)
+        this.http.put(`${BACKEND_URL}/toggle/${todo.id}`, todo)
             .subscribe(response => {
             console.log(response);
         });
     }
     deleteTodo(todoId) {
-        return this.http.delete(`${BACKEND_URL}${todoId}`);
+        return this.http.delete(`${BACKEND_URL}/${todoId}`);
     }
 }
 TodoService.ɵfac = function TodoService_Factory(t) { return new (t || TodoService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"])); };

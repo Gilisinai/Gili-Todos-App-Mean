@@ -44,7 +44,7 @@ exports.getTodos = (req, res, next) => {
     const pageSize = +req.query.pagesize
     const currentPage = +req.query.page
     
-       
+     
     const postQuery = Todo.find({creator: req.query.userid})
     let fetchedPosts;
     if(pageSize && currentPage) {

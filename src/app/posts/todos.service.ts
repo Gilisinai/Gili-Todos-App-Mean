@@ -43,7 +43,7 @@ export class TodoService {
     }
 
     getTodo(id: string) {
-        return this.http.get<{_id: string; title: string; content: string; isCompleted: boolean; creator: string;}>(`${BACKEND_URL}${id}`)
+        return this.http.get<{_id: string; title: string; content: string; isCompleted: boolean; creator: string;}>(`${BACKEND_URL}/${id}`)
     }
 
     addTodo(title: string, content: string, isCompleted: boolean) {
@@ -56,7 +56,7 @@ export class TodoService {
 
     updateTodo(id: string, title: string, content: string, isCompleted: boolean) {
         const todo: Todo = { id: id, title: title, content: content, isCompleted: isCompleted,  creator: null}
-        this.http.put(`${BACKEND_URL}${id}`, todo)
+        this.http.put(`${BACKEND_URL}/${id}`, todo)
             .subscribe(response => {
                 this.router.navigate(["/"])
             })
@@ -64,7 +64,7 @@ export class TodoService {
 
     toggleCheck(todo:Todo) {
         console.log("entered toggle check")
-        this.http.put(`${BACKEND_URL}toggle/${todo.id}`,todo)
+        this.http.put(`${BACKEND_URL}/toggle/${todo.id}`,todo)
             .subscribe(response => {
                 console.log(response)
             })
@@ -72,7 +72,7 @@ export class TodoService {
 
 
     deleteTodo(todoId: string) {
-        return this.http.delete(`${BACKEND_URL}${todoId}`)
+        return this.http.delete(`${BACKEND_URL}/${todoId}`)
          
     }
 }
